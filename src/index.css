@@ -98,3 +98,23 @@ button:focus-visible {
   color:white;
   margin-top:1em;
 }
+
+.registerBox{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.registerButton{
+  background-color: #535bf2;
+  margin-top:1.25em;
+  color:white;
+  font-size: 75%;  
+}
+
+.registerFormPassword{
+  margin-left:1em;
+}
+
+.registerSubmitButton{
+  margin-left:-5em;
+}

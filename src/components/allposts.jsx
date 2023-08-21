@@ -37,7 +37,7 @@ export default function AllPosts (){
                 </label>
             </div>
             <div>
-                <Link to = '/newpostform'>
+                <Link to = '/posts/newpostform'>
                     <button className='newPostButton'>Add a Post</button>
                 </Link>
             </div>
