@@ -76,5 +76,19 @@ button:focus-visible {
   margin-top:2em;
   padding-left:0.5em;
   padding-right:0.5em;
+  width:50em;
+}
 
+.searchPostsBox{
+  box-shadow: 0 2em 2em rgba(12, 12, 12, 0.1) ;
+  background-color: ivory;
+  border-style: dashed;
+  margin-top:2em;
+  padding-left:0.5em;
+  padding-right:0.5em;
+  width:50em;
+}
+
+.searchBox{
+  padding-top:2em;
 }
