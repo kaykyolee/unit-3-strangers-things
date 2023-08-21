@@ -14,6 +14,10 @@ export async function fetchAllPosts(){
     }
 }
 
+
+
+// let token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0MDllZjU1NWQyZjAwMTQ5ZDhiZWYiLCJ1c2VybmFtZSI6ImltdGVzdGluZ2hlcmUiLCJpYXQiOjE2OTI2Njk4MTN9.a02ojOiOQNvwnjWIu2apqZtARkMPF0xsjale4l8MJBw"
+
 // export async function fetchSinglePost ({post}){
 //     try{
 //         const {postId}= useParams();
