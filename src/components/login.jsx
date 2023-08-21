@@ -8,8 +8,8 @@ const baseUrl=`https://strangers-things.herokuapp.com/api/${COHORT}`;
 
 
 export default function Login (){
-    const [username,setUsername]=useState();
-    const[password,setPassword]=useState();
+    const [username,setUsername]=useState('');
+    const[password,setPassword]=useState('');
     const [error, setError]=useState (null);
     const dispatch=useDispatch();
     const navigate = useNavigate();
@@ -37,7 +37,8 @@ export default function Login (){
                 }));
                 console.log(result.data.token)
 
-                navigate('/user-profile');
+                navigate('/home');
+                return null;
             }else{
                 setError("Incorrect login details, please check your username or password again.");
             }

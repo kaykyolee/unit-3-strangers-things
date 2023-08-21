@@ -81,7 +81,7 @@ export default function Register (props){
                 </label>
                 <button className='registerSubmitButton' type="submit">Submit</button>
             </form>
-            <Link to = '/login'>
+            <Link to = '/'>
             <button className='backButton'>Back</button>
             </Link>
         </div>

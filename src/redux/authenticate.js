@@ -21,7 +21,7 @@ const accountSlice=createSlice({
     },
 });
 
-export const {register} = accountSlice.actions;
+export const {register,logout} = accountSlice.actions;
 
 export default accountSlice.reducer;
 
