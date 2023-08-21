@@ -1,5 +1,6 @@
 import {useState,useEffect } from 'react';
 import {fetchAllPosts} from "../API";
+import {Link} from 'react-router-dom'
 // import {PostListName} from "./postlistname"
 
 export default function AllPosts (){
@@ -34,6 +35,11 @@ export default function AllPosts (){
                         placeholder="search"
                         onChange={(e)=>setSearchParam(e.target.value.toLowerCase())}/>
                 </label>
+            </div>
+            <div>
+                <Link to = '/newpostform'>
+                    <button className='newPostButton'>Add a Post</button>
+                </Link>
             </div>
             <div >
                 {searchParam === "" ? (posts.map((post)=>(

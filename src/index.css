@@ -92,3 +92,9 @@ button:focus-visible {
 .searchBox{
   padding-top:2em;
 }
+
+.newPostButton{
+  background-color: #535bf2;
+  color:white;
+  margin-top:1em;
+}
