@@ -1,22 +1,20 @@
 import { useParams } from "react-router-dom";
+import { currentToken } from "../redux/authenticate";
 
-const COHORT="2306-GHP-ET-WEB-FT-SF";
-const baseUrl=`https://strangers-things.herokuapp.com/api/${COHORT}`;
+const COHORT = "2306-GHP-ET-WEB-FT-SF";
+const baseUrl = `https://strangers-things.herokuapp.com/api/${COHORT}`;
 
-
-export async function fetchAllPosts(){
-    try{
-        const response = await fetch (`${baseUrl}/posts`);
-        const result = await response.json();
-        return result;
-    }   catch (error){
-        console.error (error);
-    }
+export async function fetchAllPosts() {
+  try {
+    const response = await fetch(`${baseUrl}/posts`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-
-
-// let token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0MDllZjU1NWQyZjAwMTQ5ZDhiZWYiLCJ1c2VybmFtZSI6ImltdGVzdGluZ2hlcmUiLCJpYXQiOjE2OTI2Njk4MTN9.a02ojOiOQNvwnjWIu2apqZtARkMPF0xsjale4l8MJBw"
+let token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0MDllZjU1NWQyZjAwMTQ5ZDhiZWYiLCJ1c2VybmFtZSI6ImltdGVzdGluZ2hlcmUiLCJpYXQiOjE2OTI2Njk4MTN9.a02ojOiOQNvwnjWIu2apqZtARkMPF0xsjale4l8MJBw"
 
 // export async function fetchSinglePost ({post}){
 //     try{
@@ -36,15 +34,6 @@ export async function fetchAllPosts(){
 //     } catch (error){
 //         console.error (error);
 //     }
-// }
-
-// export default function SingleUser({ users }) {
-//   const { userId } = useParams();
-//   const matchedUser = users.find((user) => { 
-//     return user.id == userId
-//   });
-
-//   return <h1>{matchedUser.name}: {userId}</h1>;
 // }
 
 
