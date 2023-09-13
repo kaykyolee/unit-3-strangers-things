@@ -4,6 +4,54 @@ import { currentToken } from "../redux/authenticate";
 const COHORT = "2306-GHP-ET-WEB-FT-SF";
 const baseUrl = `https://strangers-things.herokuapp.com/api/${COHORT}`;
 
+
+export const registerUser = async (username,password)=>{
+  try {
+    const response=await fetch(
+      `${baseUrl}/users/register`,{
+        method:"POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify ({
+          user:{
+            username,
+            password
+          }
+        })
+      }
+    );
+    const result = await response.json();
+    console.log (result)
+    return result 
+  } catch (error) {
+    
+  }
+}
+
+export const login = async (username,password)=>{
+  try {
+    const response = await fetch (`${baseUrl}/users/login`, {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        user:(
+          username, 
+          password
+        )
+      })
+    });
+    const result = await response.json();
+    console.log(result);
+    return result     
+  } catch (error) {
+    
+  }
+}
+
+
 export async function fetchAllPosts() {
   try {
     const response = await fetch(`${baseUrl}/posts`);

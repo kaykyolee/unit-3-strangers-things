@@ -7,33 +7,26 @@ const baseUrl = `https://strangers-things.herokuapp.com/api/${COHORT}`;
 let token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0MDllZjU1NWQyZjAwMTQ5ZDhiZWYiLCJ1c2VybmFtZSI6ImltdGVzdGluZ2hlcmUiLCJpYXQiOjE2OTI2Njk4MTN9.a02ojOiOQNvwnjWIu2apqZtARkMPF0xsjale4l8MJBw"
 
 
-export default function NewPostForm({posts,setPosts}){
-    const [title,setTitle]=useState("");
-    const [description, setDescription]=useState("");
-    const [price,setPrice]=useState("");
-    const [location, setLocation]=useState("");
-    const [error,setError]=useState(null);
+export default function ViewPost({posts,setPosts}){
+    const [error, setError] = useState (null);
+    const [searchParam, setSearchParam] = useState('');
     const navigate = useNavigate();
 
 
     async function handleSubmit (e){
       e.preventDefault();
-      let postData={
-        title:title,
-        description: description,
-        price:price,
-        location:location
-      }
+
+      
 
       try {
         const response = await fetch(`${baseUrl}/posts`, {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            post: postData
+            post: _id
               
           })
         });
@@ -41,12 +34,6 @@ export default function NewPostForm({posts,setPosts}){
         console.log(result);
 
          if (result.success){
-          const newPostList=[...posts,result.data.post];
-          setPosts(newPostList);
-          setTitle("");
-          setDescription("");
-          setPrice("");
-          setLocation("");
           navigate('/posts');
           return null;
         } 
@@ -97,4 +84,4 @@ export default function NewPostForm({posts,setPosts}){
         </Link>
       </form>
     );
-  }
+    }

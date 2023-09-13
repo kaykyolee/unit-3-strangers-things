@@ -1,13 +1,10 @@
 import {Link,useNavigate} from 'react-router-dom'
 import {useState} from 'react';
+import {login} from '../API/index'
 import {register as registerAction} from '../redux/authenticate';
 import {useDispatch} from 'react-redux';
 
-const COHORT="2306-GHP-ET-WEB-FT-SF";
-const baseUrl=`https://strangers-things.herokuapp.com/api/${COHORT}`;
-
-
-export default function Login (){
+export default function Login ({setToken}){
     const [username,setUsername]=useState('');
     const[password,setPassword]=useState('');
     const [error, setError]=useState (null);
@@ -16,38 +13,45 @@ export default function Login (){
 
     async function handleSubmit(event){
         event.preventDefault();
+        console.log (username,password);
+        const register = await login (username,password);
+        setToken(register.data.token);
+        console.log (register);
+        setUsername('');
+        setPassword('');
+        nav('/home');
 
-        try {
-            const response=await fetch(`${baseUrl}/users/login`,{
-                method:"POST",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify ({user: 
-                    {username,password,},
-            })
-            });
-            const result=await response.json();
+    //     try {
+    //         const response=await fetch(`${baseUrl}/users/login`,{
+    //             method:"POST",
+    //             headers:{
+    //                 'Content-Type':'application/json'
+    //             },
+    //             body: JSON.stringify ({user: 
+    //                 {username,password,},
+    //         })
+    //         });
+    //         const result=await response.json();
            
-            if (result.success){
-                dispatch (registerAction({
-                    username:result.data.username,
-                    token:result.data.token,
+    //         if (result.success){
+    //             dispatch (registerAction({
+    //                 username:result.data.username,
+    //                 token:result.data.token,
                     
-                }));
-                console.log(result.data.token)
+    //             }));
+    //             console.log(result.data.token)
 
-                navigate('/home');
-                return null;
-            }else{
-                setError("Incorrect login details, please check your username or password again.");
-            }
-            console.log(setError)
-            return result;
-    }   
-        catch (err){
-            console.error (err);
-        }
+    //             navigate('/home');
+    //             return null;
+    //         }else{
+    //             setError("Incorrect login details, please check your username or password again.");
+    //         }
+    //         console.log(setError)
+    //         return result;
+    // }   
+    //     catch (err){
+    //         console.error (err);
+    //     }
         }
 
         return (

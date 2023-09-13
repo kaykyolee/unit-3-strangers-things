@@ -1,12 +1,10 @@
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
+import {registerUser} from '../API/index'
 import {Link} from 'react-router-dom';
-import {register as registerAction} from '../redux/authenticate'
+// import {register as registerAction} from '../redux/authenticate'
 
-const COHORT="2306-GHP-ET-WEB-FT-SF";
-const baseUrl=`https://strangers-things.herokuapp.com/api/${COHORT}`;
-
-export default function Register (props){
+export default function Register ({setToken}){
     const [username, setUsername]=useState ("");
     const [password, setPassword]=useState ("");
     const [error, setError]=useState (null);
@@ -16,37 +14,44 @@ export default function Register (props){
 
     async function handleSubmit (event){
         event.preventDefault();
+        console.log(username,password);
+        const register=await registerUser(username,password);
+        setToken(register.data.token);
+        console.log(register);
+        setUsername('');
+        setPassword('');
+        nav('/');
 
-        try{
-            const response = await fetch (`${baseUrl}/users/register`,{
-                method:"POST",
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify ({user: 
-                    {username,password}},
-                )
-            });
-                const result = await response.json();
+    //     try{
+    //         const response = await fetch (`${baseUrl}/users/register`,{
+    //             method:"POST",
+    //             headers:{
+    //                 'Content-Type':'application/json'
+    //             },
+    //             body: JSON.stringify ({user: 
+    //                 {username,password}},
+    //             )
+    //         });
+    //             const result = await response.json();
 
-                if (result.success){
-                    dispatch (registerAction({
-                        username:result.data.username,
-                        token:result.data.token,
-                    }));
-                    setSuccess ("Registration successful!");
-                    console.log(setSuccess)
-                }else{
-                    setError(result.error.message);
-                }
+    //             if (result.success){
+    //                 dispatch (registerAction({
+    //                     username:result.data.username,
+    //                     token:result.data.token,
+    //                 }));
+    //                 setSuccess ("Registration successful!");
+    //                 console.log(setSuccess)
+    //             }else{
+    //                 setError(result.error.message);
+    //             }
 
-            return result;
-            console.log(result)
+    //         return result;
+    //         console.log(result)
 
         
-        }   catch (error){
-            console.error (error);
-        }
+    //     }   catch (error){
+    //         console.error (error);
+    //     }
     }
 
     return(
